@@ -1,6 +1,5 @@
 import json
 import os
-import pandas
 
 def load_books(filename="library.json"):
     """
