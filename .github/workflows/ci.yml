@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4.2.2  # Используем последнюю стабильную версию
+        uses: actions/checkout@v2  # Шаг для получения кода
 
       - name: Install Ruff
         run: |
@@ -20,10 +20,13 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "chernovandreey@gmail.com"  # Настройка email для git
-          git config --local user.name "iii"  # Настройка имени для git
+          git config --local user.email "you@example.com"  # Настройка email для git
+          git config --local user.name "Your Name"  # Настройка имени для git
           git add .  # Добавляем изменения
           git commit -m "Fix unused imports" || echo "No changes to commit"  # Коммитим изменения, если есть
 
+      - name: Push changes
+        run: |
+          git push origin HEAD:main  # Пушим изменения в ветку main
      
       
