@@ -1,32 +1,19 @@
-name: CI for Code Quality
+name: CI 
 
 on:
   push:  # Запускает workflow при каждом пуше
     branches:
       - main  # Укажите здесь свои ветки, если нужно
-  pull_request:  # Запускает при создании Pull Request
-    branches:
-      - main
 
 jobs:
   lint:
     runs-on: ubuntu-latest  # Используем последнюю версию Ubuntu
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2  # Шаг для получения кода из репозитория
-
-      - name: Set up Python
-        uses: actions/setup-python@v2  # Установка Python
-        with:
-          python-version: '3.11'  # Укажите версию Python
-
       - name: Install Ruff
         run: |
           pip install ruff  # Устанавливаем линтер Ruff
 
       - name: Run Ruff
         run: |
-          echo "Running Ruff Linter..."
-          ruff check --fix .  # Запускаем линтер для проверки всех файлов в текущей директории
-          echo "Ruff Linter completed."
+          ruff check --fix .  # Запускаем линтер для проверки всех файлов 
