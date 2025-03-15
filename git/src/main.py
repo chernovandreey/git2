@@ -1,8 +1,9 @@
 import json
 import os
 import pandas
+import math
 
- def load_books(filename="library.json"):
+def load_books(filename="library.json"):
     """
     Загрузка списка книг из JSON-файла.
     Возвращает список книг (каждая книга - это словарь).
