@@ -28,5 +28,5 @@ jobs:
       - name: Run Ruff
         run: |
           echo "Running Ruff Linter..."
-          ruff check .  # Запускаем линтер для проверки всех файлов в текущей директории
+          ruff check --fix .  # Запускаем линтер для проверки всех файлов в текущей директории
           echo "Ruff Linter completed."
