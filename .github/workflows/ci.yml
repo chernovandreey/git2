@@ -1,16 +1,30 @@
 name: Run Ruff Linter
 
-on: [push]  # Запускайте workflow при push
+on: [push]  # Запускает workflow при push
 
 jobs:
   lint:
     runs-on: ubuntu-latest  # Эту строку нужно оставить
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@latest  # Шаг для получения кода
+
       - name: Install Ruff
         run: |
           pip install ruff  # Устанавливаем линтер Ruff
 
       - name: Run Ruff
         run: |
-          ruff check --fix .  # Запускаем линтинг для всех файлов 
+          ruff check --fix .  # Запускаем линтинг и исправление для всех файлов в текущей директории
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "chernovandreey@gmail.com"  # Настройка email для git
+          git config --local user.name "It's me"  # Настройка имени для git
+          git add .  # Добавляем изменения
+          git commit -m "Fix" || echo "No changes to commit"  # Коммитим изменения, если есть
+
+      - name: Push changes
+        run: |
+          git push origin HEAD:main  # Пушим изменения в ветку main
