@@ -1,19 +1,38 @@
-name: CI 
+name: CI
 
 on:
-  push:  # Запускает workflow при каждом пуше
+  push:
     branches:
-      - main  # Укажите здесь свои ветки, если нужно
+      - main
 
 jobs:
   lint:
-    runs-on: ubuntu-latest  # Используем последнюю версию Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
       - name: Install Ruff
         run: |
-          pip install ruff  # Устанавливаем линтер Ruff
+          pip install ruff
 
-      - name: Run Ruff
+      - name: Run Ruff with Fix
         run: |
-          ruff check --fix .  # Запускаем линтер для проверки всех файлов 
+          ruff check --fix .  # Запускаем линтер для проверки всех файлов
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "you@example.com"
+          git config --local user.name "Your Name"
+          git add .  # Добавляем изменения
+          git commit -m "Fix unused imports" || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
+          git push origin HEAD:main
