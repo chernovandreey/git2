@@ -14,3 +14,7 @@ jobs:
       - name: Run Ruff
         run: |
           ruff check .  # Запускаем линтинг для всех файлов в текущей директории
+
+      - name: Fix Ruff
+	run: |
+	  ruff check --fix . # Фикс недочётов
