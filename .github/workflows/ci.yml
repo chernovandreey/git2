@@ -29,6 +29,4 @@ jobs:
         run: |
           git pull origin main  # Получить последние изменения из ветки main
 
-      - name: Push changes
-        run: |
-          git push origin HEAD:main  # Пушим изменения в ветку main
+      
