@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@latest  # Шаг для получения кода
+        uses: actions/checkout@v4.2.2  # Шаг для получения кода
 
       - name: Install Ruff
         run: |
